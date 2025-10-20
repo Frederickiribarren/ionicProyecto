@@ -1,0 +1,7 @@
+{
+  "name": "proyectionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
