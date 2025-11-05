@@ -1,0 +1,118 @@
+// Tema moderno para TaskReminder
+:root {
+  --primary: #8b5cf6;       /* Purple 500 */
+  --primary-dark: #7c3aed;  /* Purple 600 */
+  --primary-light: #a78bfa; /* Purple 400 */
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --text-light: #64748b;
+}
+
+// Header con gradiente y tabs personalizados
+ion-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: white;
+  
+  ion-toolbar:first-child {
+    --background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    --color: black;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    
+    ion-title {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.3px;
+      color: black;
+    }
+  }
+
+  // Toolbar de tabs personalizado
+  .tabs-toolbar {
+    --background: var(--surface);
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0;
+
+    .tab-buttons {
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+
+      .tab-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 8px;
+        background: transparent;
+        border: none;
+        color: var(--text-light);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+
+        ion-icon {
+          font-size: 22px;
+          transition: all 0.3s ease;
+        }
+
+        span {
+          font-size: 12px;
+          font-weight: 600;
+        }
+
+        // Estado activo
+        &.active {
+          color: var(--primary);
+
+          ion-icon {
+            transform: scale(1.1);
+          }
+
+          span {
+            font-weight: 700;
+          }
+
+          // Indicador inferior
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px 2px 0 0;
+          }
+        }
+
+        &:hover:not(.active) {
+          color: var(--primary-light);
+
+          ion-icon {
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Content con padding para header fijo
+ion-content {
+  --background: var(--background);
+  margin-top: 112px;
+}
+
+// Animaciones suaves
+* {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}

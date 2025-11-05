@@ -1,0 +1,38 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-title>TaskReminder</ion-title>
+  </ion-toolbar>
+  
+  <!-- Tabs debajo del título -->
+  <ion-toolbar class="tabs-toolbar">
+    <div class="tab-buttons">
+      <button class="tab-btn" [class.active]="currentView === 'tarea'" (click)="changeView('tarea')">
+        <ion-icon name="list"></ion-icon>
+        <span>Tareas</span>
+      </button>
+      <button class="tab-btn" [class.active]="currentView === 'calendario'" (click)="changeView('calendario')">
+        <ion-icon name="calendar"></ion-icon>
+        <span>Calendario</span>
+      </button>
+      <button class="tab-btn" [class.active]="currentView === 'perfil'" (click)="changeView('perfil')">
+        <ion-icon name="person-circle"></ion-icon>
+        <span>Perfil</span>
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <!-- Contenido según la vista seleccionada -->
+  <div *ngIf="currentView === 'tarea'">
+    <app-tarea></app-tarea>
+  </div>
+  
+  <div *ngIf="currentView === 'calendario'">
+    <h2 style="padding: 20px;">Calendario (Próximamente)</h2>
+  </div>
+  
+  <div *ngIf="currentView === 'perfil'">
+    <h2 style="padding: 20px;">Perfil (Próximamente)</h2>
+  </div>
+</ion-content>

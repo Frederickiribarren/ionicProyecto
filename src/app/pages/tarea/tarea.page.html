@@ -1,0 +1,131 @@
+<ion-content [fullscreen]="true">
+  <!-- Formulario para agregar tarea -->
+  <div class="form-container">
+    <div class="form-card">
+      <h2>✨ Nueva Tarea</h2>
+      
+      <ion-input 
+        type="text" 
+        fill="outline" 
+        label="Título de la tarea" 
+        labelPlacement="floating"
+        [(ngModel)]="nuevaTarea.titulo"
+        placeholder="Ej: Revisar correos">
+      </ion-input>
+
+      <ion-textarea
+        fill="outline"
+        label="Descripción"
+        labelPlacement="floating"
+        [(ngModel)]="nuevaTarea.descripcion"
+        placeholder="Detalles de la tarea..."
+        rows="3">
+      </ion-textarea>
+
+      <ion-select 
+        fill="outline" 
+        label="Estado" 
+        labelPlacement="floating"
+        [(ngModel)]="nuevaTarea.estado">
+        <ion-select-option value="pendiente">Pendiente</ion-select-option>
+        <ion-select-option value="progreso">En Progreso</ion-select-option>
+        <ion-select-option value="finalizada">Finalizada</ion-select-option>
+      </ion-select>
+
+      <ion-button expand="block" (click)="agregarTarea()">
+        <ion-icon slot="start" name="add-circle"></ion-icon>
+        Agregar Tarea
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Lista de tareas por estado -->
+  <div class="tasks-container">
+    <!-- Tareas Pendientes -->
+    <div class="task-section">
+      <h3 class="section-title pendiente">
+        <ion-icon name="time-outline"></ion-icon>
+        Pendientes ({{ getTareasPorEstado('pendiente').length }})
+      </h3>
+      <ion-list *ngIf="getTareasPorEstado('pendiente').length > 0">
+        <ion-item *ngFor="let tarea of getTareasPorEstado('pendiente')" class="task-item pendiente">
+          <div class="task-content">
+            <div class="task-header">
+              <h4>{{ tarea.titulo }}</h4>
+              <ion-badge color="warning">Pendiente</ion-badge>
+            </div>
+            <p>{{ tarea.descripcion }}</p>
+            <div class="task-actions">
+              <ion-button size="small" fill="outline" color="primary" (click)="editarTarea(tarea)">
+                <ion-icon slot="start" name="create-outline"></ion-icon>
+                Editar
+              </ion-button>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="getTareasPorEstado('pendiente').length === 0" class="empty-state">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <p>No hay tareas pendientes</p>
+      </div>
+    </div>
+
+    <!-- Tareas En Progreso -->
+    <div class="task-section">
+      <h3 class="section-title progreso">
+        <ion-icon name="hourglass-outline"></ion-icon>
+        En Progreso ({{ getTareasPorEstado('progreso').length }})
+      </h3>
+      <ion-list *ngIf="getTareasPorEstado('progreso').length > 0">
+        <ion-item *ngFor="let tarea of getTareasPorEstado('progreso')" class="task-item progreso">
+          <div class="task-content">
+            <div class="task-header">
+              <h4>{{ tarea.titulo }}</h4>
+              <ion-badge color="primary">En Progreso</ion-badge>
+            </div>
+            <p>{{ tarea.descripcion }}</p>
+            <div class="task-actions">
+              <ion-button size="small" fill="outline" color="warning" (click)="enviarNotificacion(tarea)">
+                <ion-icon slot="start" name="notifications-outline"></ion-icon>
+                Notificar
+              </ion-button>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="getTareasPorEstado('progreso').length === 0" class="empty-state">
+        <ion-icon name="rocket-outline"></ion-icon>
+        <p>No hay tareas en progreso</p>
+      </div>
+    </div>
+
+    <!-- Tareas Finalizadas -->
+    <div class="task-section">
+      <h3 class="section-title finalizada">
+        <ion-icon name="checkmark-done-outline"></ion-icon>
+        Finalizadas ({{ getTareasPorEstado('finalizada').length }})
+      </h3>
+      <ion-list *ngIf="getTareasPorEstado('finalizada').length > 0">
+        <ion-item *ngFor="let tarea of getTareasPorEstado('finalizada')" class="task-item finalizada">
+          <div class="task-content">
+            <div class="task-header">
+              <h4>{{ tarea.titulo }}</h4>
+              <ion-badge color="success">Finalizada</ion-badge>
+            </div>
+            <p>{{ tarea.descripcion }}</p>
+            <div class="task-actions">
+              <ion-button size="small" fill="outline" color="danger" (click)="eliminarTarea(tarea)">
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                Eliminar
+              </ion-button>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="getTareasPorEstado('finalizada').length === 0" class="empty-state">
+        <ion-icon name="trophy-outline"></ion-icon>
+        <p>No hay tareas finalizadas</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

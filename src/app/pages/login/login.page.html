@@ -1,24 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>TaskReminder</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-
-    </ion-toolbar>
-  </ion-header>
-
   <div id="login-form">
-    <ion-input label="Login" label-placement="floating" fill="outline" placeholder="Frederick" id="login"></ion-input>
-    <br />
-    <ion-input label="Password" label-placement="floating" fill="outline" placeholder="xxxxxxxxxxxxx"
-      id="password"></ion-input>
+    <h2 style="margin: 0 0 8px; font-size: 24px; color: #0f172a; font-weight: 700;">Bienvenido</h2>
+    <p style="margin: 0 0 32px; font-size: 14px; color: #64748b;">Organiza tus tareas de forma eficiente</p>
+    
+    <ion-input 
+      type="email" 
+      fill="outline"
+      label="Correo electrónico" 
+      labelPlacement="floating"
+      errorText="Correo inválido" 
+      ngModel 
+      email
+    ></ion-input>
+    
+    <ion-input 
+      type="password" 
+      fill="outline"
+      label="Contraseña" 
+      labelPlacement="floating"
+      value=""
+    >
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+
+    <ion-button expand="full" (click)="irDashboard()">Iniciar Sesión</ion-button>
+
+    <p style="margin: 24px 0 0; font-size: 13px; color: #64748b; text-align: center;">
+      ¿No tienes cuenta? <a (click)="irRegister()" style="color: #8b5cf6; font-weight: 600; text-decoration: none; cursor: pointer;">Regístrate</a>
+    </p>
   </div>
-
-  <ion-button expand="full" (click)="irRegister()">Login</ion-button>
-
 </ion-content>

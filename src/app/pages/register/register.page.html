@@ -1,13 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>TaskReminder</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="register-form">
+    <h2 style="margin: 0 0 8px; font-size: 24px; color: #0f172a; font-weight: 700;">Crear Cuenta</h2>
+    <p style="margin: 0 0 32px; font-size: 14px; color: #64748b;">Comienza a organizar tus tareas hoy</p>
+
+    <ion-input type="text" fill="outline" label="Nombre completo" labelPlacement="floating"
+      [(ngModel)]="nombre"></ion-input>
+
+    <ion-input type="email" fill="outline" label="Correo electrónico" labelPlacement="floating"
+      [(ngModel)]="email"></ion-input>
+
+    <ion-input type="password" fill="outline" label="Contraseña" labelPlacement="floating" [(ngModel)]="password">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+
+    <ion-input type="password" fill="outline" label="Confirmar contraseña" labelPlacement="floating"
+      [(ngModel)]="confirmPassword">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+
+    <ion-button expand="full">Crear Cuenta</ion-button>
+
+    <p style="margin: 24px 0 0; font-size: 13px; color: #64748b; text-align: center;">
+      ¿Ya tienes cuenta? <a (click)="goToLogin()"
+        style="color: #8b5cf6; font-weight: 600; text-decoration: none; cursor: pointer;">Inicia sesión</a>
+    </p>
+  </div>
 </ion-content>

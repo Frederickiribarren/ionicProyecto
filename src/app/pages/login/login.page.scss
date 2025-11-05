@@ -1,17 +1,117 @@
-ion-title {
-    text-align: center;
+// Colores para recordatorio de tareas
+:root {
+  --primary: #8b5cf6;       /* Purple 500 */
+  --primary-dark: #7c3aed;  /* Purple 600 */
+  --success: #10b981;
+  --background: #ffffff;
+  --text: #0f172a;
+  --text-light: #64748b;
+  --border: #e2e8f0;
 }
 
+// Content con fondo blanco
+ion-content {
+  --background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+// Toolbar centrado
+ion-toolbar {
+  text-align: center;
+}
+
+// Formulario principal
 #login-form {
-    width: 80%;
-    max-width: 420px;
-    /* separar del header superior */
-    margin: 150px auto 0;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  position: relative;
+  top: 150px;
+  
+  // Logo/icono antes del formulario
+  &::before {
+    content: '✓';
+    display: block;
+    font-size: 64px;
     text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.3));
+  }
+
+  // Centrar título y subtítulo
+  h2, p {
+    text-align: center;
+  }
+  
+  // Inputs
+  ion-input {
+    --background: #ffffff;
+    --border-color: #e2e8f0;
+    --border-radius: 12px;
+    --border-width: 1px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --placeholder-color: #94a3b8;
+    --placeholder-opacity: 1;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    min-height: 56px;
+    
+    &::part(native) {
+      border: 1px solid var(--border);
+    }
+  }
+  
+  br {
+    display: none;
+  }
+  
+  // Botón principal
+  ion-button {
+    --border-radius: 12px;
+    --background: #8b5cf6;
+    --background-activated: #7c3aed;
+    --background-hover: #7c3aed;
+    --color: #ffffff;
+    --box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    margin-top: 24px;
+    height: 52px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    
+    &:hover {
+      --box-shadow: 0 6px 16px rgba(139, 92, 246, 0.5);
+    }
+  }
 }
 
+// Título en el header
+ion-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+// Responsive
+@media (max-width: 480px) {
+  #login-form {
+    width: 92%;
+    padding: 32px 24px;
+    
+    &::before {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+  }
+}
 
 
