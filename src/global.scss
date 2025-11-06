@@ -48,3 +48,18 @@
 ion-content {
   --background: #ffffff !important;
 }
+
+/* Tema de la aplicación - variables globales reutilizables */
+:root {
+  --primary: #8b5cf6;
+  --primary-dark: #7c3aed;
+  --primary-light: #a78bfa;
+  --warning: #f59e0b;
+  --success: #10b981;
+  --danger: #ef4444;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --text-light: #64748b;
+  --border: #e2e8f0;
+}
