@@ -20,7 +20,7 @@ ion-content {
 // Formulario
 .form-container {
   padding: 20px 16px;
-  padding-top: 140px;
+  padding-top: 180px;
   background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
 }
 
@@ -152,6 +152,7 @@ ion-content {
 ion-list {
   background: transparent;
   padding: 0;
+  padding-top: 15px;
 }
 
 ion-item.task-item {
