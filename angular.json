@@ -49,7 +49,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kb",
+                  "maximumWarning": "6kb",
                   "maximumError": "8kb"
                 }
               ],
@@ -82,9 +82,11 @@
             "development": {
               "buildTarget": "app:build:development"
             },
-            "ci": {
-              "progress": false
-            }
+            "ci": 
+              {
+                "buildTarget": "app:build:ci"
+              }
+            
           },
           "defaultConfiguration": "development"
         },

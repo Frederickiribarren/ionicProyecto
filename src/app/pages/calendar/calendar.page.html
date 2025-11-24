@@ -1,0 +1,25 @@
+
+<ion-content [fullscreen]="true">
+  <div class="calendar-wrap">
+    <div class="calendar-card">
+      <ion-datetime [value]="selectedDate" (ionChange)="onDateChange($event)" presentation="date" min="1990-01-01" max="2040-12-31"></ion-datetime>
+    </div>
+
+    <div class="events-list" *ngIf="events?.length">
+      <ion-list>
+        <ion-item *ngFor="let ev of events">
+          <ion-label>
+            <h3>{{ ev.title }}</h3>
+            <p>{{ ev.time | date: 'short' }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button aria-label="Agregar evento" (click)="openAddEvent()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

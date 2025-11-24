@@ -1,7 +1,7 @@
 // Colores para recordatorio de tareas
 :root {
-  --primary: #8b5cf6;       /* Purple 500 */
-  --primary-dark: #7c3aed;  /* Purple 600 */
+  --primary: #8b5cf6;       
+  --primary-dark: #7c3aed; 
   --success: #10b981;
   --background: #ffffff;
   --text: #0f172a;
@@ -34,7 +34,7 @@ ion-toolbar {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--border);
   position: relative;
-  top: 150px;
+  top: 60px;
   
   // Logo/icono antes del formulario
   &::before {

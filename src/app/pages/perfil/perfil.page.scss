@@ -1,0 +1,109 @@
+/* Perfil - UI mejorada */
+.sectionPerfil {
+  position: relative;
+  padding: 170px 16px 40px;
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tarjeta central */
+.profile-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(16,24,40,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(139,92,246,0.12);
+}
+
+ion-avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.avatarPerfil {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 3px solid rgba(139,92,246,0.9);
+  border-radius: 50%;
+  background: #f3f4f6;
+}
+
+.profile-actions {
+     width: 100%; 
+     display:flex; 
+     justify-content:center; 
+     margin-right: 20px;
+    }
+
+.photo-btn {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.profile-name { 
+    margin: 6px 0 0 0; 
+    font-size: 20px; 
+    font-weight: 800; 
+    color: var(--text); 
+}
+.profile-email { 
+    margin: 0; 
+    font-size: 14px; 
+    color: var(--text-light); 
+}
+
+.profile-cta { 
+    width: 100%; 
+    display:flex; 
+    flex-direction:column; 
+    align-items: center; 
+    gap:10px; 
+    margin-top:38px;
+}
+
+ion-button.edit-btn, ion-button.logout-btn {
+  --border-radius: 10px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  width: 150px;
+}
+
+/* Subrayado al final de la sección (decorativo) */
+.sectionPerfil::after {
+  content: "";
+  display: block;
+  width: 220px;
+  height: 2px;
+  background: #000;
+  margin-top: 18px;
+  border-radius: 1px;
+}
+
+@media (max-width: 480px) {
+  .profile-card { padding: 16px; }
+  .avatar-wrap { width: 100px; height: 100px; }
+}

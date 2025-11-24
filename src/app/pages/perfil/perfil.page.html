@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true">
+  <div class="sectionPerfil">
+    <div class="profile-card">
+      <div class="avatar-wrap">
+        <ion-avatar aria-hidden="true">
+          <img class="avatarPerfil" [src]="imagenCapturada || 'https://ionicframework.com/docs/img/demos/avatar.svg'" alt="Foto de perfil" />
+        </ion-avatar>
+      </div>
+
+      <div class="profile-actions">
+        <ion-button size="small" fill="clear" class="photo-btn" (click)="tomarFoto()" aria-label="Agregar foto">
+          <ion-icon name="camera" slot="start"></ion-icon>
+          Agregar foto
+        </ion-button>
+      </div>
+
+      <div class="profile-meta">
+        <h2 class="profile-name">Nombre Usuario</h2>
+        <p class="profile-email">Correo@correo.com</p>
+      </div>
+
+      <div class="profile-cta">
+        <ion-button fill="outline" class="edit-btn">Editar perfil</ion-button>
+        <ion-button color="danger" class="logout-btn" (click)="onLogout()" aria-label="Cerrar sesión">Cerrar sesión</ion-button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <ion-google-map
+      #map
+      height="300px"
+      width="100%"
+      [center]="center"
+      [zoom]="15"
+      (click)="openGeotest()"
+      role="button"
+      tabindex="0"
+      aria-label="Abrir mapa en geotest"
+    ></ion-google-map>
+
+    <div class="map-overlay">
+      <ion-button size="small" fill="solid" (click)="openGeotest()" aria-label="Abrir geotest">Ver ubicación</ion-button>
+    </div>
+    
+
+  </div>
+</ion-content>

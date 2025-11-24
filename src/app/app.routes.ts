@@ -30,4 +30,16 @@ export const routes: Routes = [
     path: 'tarea',
     loadComponent: () => import('./pages/tarea/tarea.page').then( m => m.TareaPage)
   },
+  {
+    path: 'geotest',
+    loadComponent: () => import('./pages/geotest/geotest.page').then( m => m.GeotestPage)
+  },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./pages/perfil/perfil.page').then( m => m.PerfilPage)
+  },
+  {
+    path: 'calendar',
+    loadComponent: () => import('./pages/calendar/calendar.page').then( m => m.CalendarPage)
+  },
 ];

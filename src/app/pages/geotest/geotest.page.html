@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>geotest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">geotest</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item >
+      <ion-button expand="block" color="success" (click)="obtenerUbicacion()" [disabled]="obteniendoUbicacion">
+        <ion-icon slot="start" name="locate-outline"></ion-icon>
+        {{ obteniendoUbicacion ? 'Obteniendo Ubicación...' : 'Obtener Ubicación' }}
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <div style="text-align: center; width: 100%;">
+        <p><strong>Ubicacion GPS</strong></p>
+        <p>Latitud: {{ unaUbicacion?.latitude }}</p> 
+        <p>Longitud: {{ unaUbicacion?.longitude }}</p>
+        <p>Precision: {{ unaUbicacion?.accuracy }}</p>
+        <ion-button size="small" fill="outline" [href]="obtenerEnlaceMapa()" target="_blank">Ver en Mapa</ion-button>
+        <ion-icon slot="start" name="map-outline"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
