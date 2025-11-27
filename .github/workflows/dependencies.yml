@@ -1,0 +1,28 @@
+name: Install Dependencies
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install npm dependencies
+        run: npm install
+      - name: Install Capacitor plugins
+        run: |
+          npm install @capacitor/camera @capacitor/geolocation @capacitor/app @capacitor/haptics @capacitor/keyboard @capacitor/preferences @capacitor/status-bar
+      - name: Capacitor sync
+        run: npx cap sync
+      - name: List installed packages
+        run: npm list --depth=0
+      - name: Show success message
+        run: echo "Dependencias instaladas y Capacitor sincronizado. Listo para build o deploy."
