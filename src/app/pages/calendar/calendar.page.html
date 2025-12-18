@@ -2,24 +2,50 @@
 <ion-content [fullscreen]="true">
   <div class="calendar-wrap">
     <div class="calendar-card">
-      <ion-datetime [value]="selectedDate" (ionChange)="onDateChange($event)" presentation="date" min="1990-01-01" max="2040-12-31"></ion-datetime>
+      <ion-datetime 
+        [value]="selectedDate" 
+        (ionChange)="onDateChange($event)" 
+        presentation="date" 
+        min="1990-01-01" 
+        max="2040-12-31">
+      </ion-datetime>
     </div>
 
-    <div class="events-list" *ngIf="events?.length">
-      <ion-list>
-        <ion-item *ngFor="let ev of events">
-          <ion-label>
-            <h3>{{ ev.title }}</h3>
-            <p>{{ ev.time | date: 'short' }}</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
+    <div class="recordatorios-section">
+      <div class="section-header">
+        <h2 class="recordatorios-title">Recordatorios del día</h2>
+        <ion-button (click)="openAddEvent()" class="add-reminder-btn">
+          <ion-icon slot="start" name="add-circle"></ion-icon>
+          Agregar
+        </ion-button>
+      </div>
+      
+      <div class="recordatorios-list" *ngIf="recordatoriosDelDia.length > 0; else noRecordatorios">
+        <ion-card *ngFor="let recordatorio of recordatoriosDelDia" class="recordatorio-card">
+          <ion-card-header>
+            <ion-card-title>
+              <span class="hora" *ngIf="recordatorio.hora">{{ recordatorio.hora }}</span>
+              {{ recordatorio.titulo }}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content *ngIf="recordatorio.descripcion">
+            {{ recordatorio.descripcion }}
+          </ion-card-content>
+          <div class="card-actions">
+            <ion-button fill="clear" color="danger" size="small" (click)="eliminarRecordatorio(recordatorio)">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+        </ion-card>
+      </div>
+
+      <ng-template #noRecordatorios>
+        <div class="no-recordatorios">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <p>No hay recordatorios para este día</p>
+        </div>
+      </ng-template>
     </div>
   </div>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button aria-label="Agregar evento" (click)="openAddEvent()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

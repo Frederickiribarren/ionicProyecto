@@ -1,6 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="sectionPerfil">
-    <div class="profile-card">
+    <!-- Header con foto y nombre -->
+    <div class="profile-header">
       <div class="avatar-wrap">
         <ion-avatar aria-hidden="true">
           <img class="avatarPerfil" [src]="imagenCapturada || 'https://ionicframework.com/docs/img/demos/avatar.svg'" alt="Foto de perfil" />
@@ -14,15 +15,104 @@
         </ion-button>
       </div>
 
-      <div class="profile-meta">
-        <h2 class="profile-name">Nombre Usuario</h2>
+      <div class="profile-info">
+        <h1 class="profile-name">Nombre Usuario</h1>
+        <p class="profile-username">@usuario123</p>
         <p class="profile-email">Correo@correo.com</p>
       </div>
 
-      <div class="profile-cta">
-        <ion-button fill="outline" class="edit-btn">Editar perfil</ion-button>
-        <ion-button color="danger" class="logout-btn" (click)="onLogout()" aria-label="Cerrar sesión">Cerrar sesión</ion-button>
+      <ion-button expand="block" class="edit-profile-btn">
+        <ion-icon name="create-outline" slot="start"></ion-icon>
+        Editar perfil
+      </ion-button>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-section">
+      <div class="stat-item">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <div class="stat-info">
+          <p class="stat-value">{{ totalTareas }}</p>
+          <p class="stat-label">Tareas</p>
+        </div>
       </div>
+      <div class="stat-item">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <div class="stat-info">
+          <p class="stat-value">{{ totalRecordatorios }}</p>
+          <p class="stat-label">Recordatorios</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Opciones de configuración -->
+    <div class="settings-section">
+      <h3 class="section-title">Configuración</h3>
+      
+      <div class="settings-list">
+        <div class="setting-item">
+          <div class="setting-icon">
+            <ion-icon name="person-outline"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <p class="setting-title">Información personal</p>
+            <p class="setting-subtitle">Actualiza tus datos</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-icon">
+            <ion-icon name="notifications-outline"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <p class="setting-title">Notificaciones</p>
+            <p class="setting-subtitle">Gestiona tus alertas</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-icon">
+            <ion-icon name="color-palette-outline"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <p class="setting-title">Apariencia</p>
+            <p class="setting-subtitle">Tema claro u oscuro</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-icon">
+            <ion-icon name="shield-checkmark-outline"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <p class="setting-title">Privacidad y seguridad</p>
+            <p class="setting-subtitle">Controla tus datos</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-icon">
+            <ion-icon name="help-circle-outline"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <p class="setting-title">Ayuda y soporte</p>
+            <p class="setting-subtitle">Obtén asistencia</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón de cerrar sesión -->
+    <div class="logout-section">
+      <ion-button expand="block" color="danger" fill="outline" class="logout-btn" (click)="onLogout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Cerrar sesión
+      </ion-button>
     </div>
   </div>
   <div>

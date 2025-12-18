@@ -58,35 +58,26 @@ export class TareaPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Cargar tareas de ejemplo
-    this.cargarTareasEjemplo();
+    this.cargarTareas();
   }
 
-  cargarTareasEjemplo() {
-    this.tareas = [
-      {
-        id: 1,
-        titulo: 'Revisar correos',
-        descripcion: 'Revisar y responder correos importantes del día',
-        estado: 'pendiente',
-        fecha: new Date()
-      },
-      {
-        id: 2,
-        titulo: 'Preparar presentación',
-        descripcion: 'Crear slides para la reunión del viernes',
-        estado: 'progreso',
-        fecha: new Date()
-      },
-      {
-        id: 3,
-        titulo: 'Actualizar documentación',
-        descripcion: 'Documentar los cambios del último sprint',
-        estado: 'finalizada',
-        fecha: new Date()
+  cargarTareas() {
+    const tareasGuardadas = localStorage.getItem('tareas');
+    if (tareasGuardadas) {
+      try {
+        this.tareas = JSON.parse(tareasGuardadas);
+      } catch (e) {
+        console.error('Error al cargar tareas:', e);
+        this.tareas = [];
       }
-    ];
+    }
   }
+
+  guardarTareas() {
+    localStorage.setItem('tareas', JSON.stringify(this.tareas));
+  }
+
+
 
   agregarTarea() {
     if (!this.nuevaTarea.titulo.trim()) {
@@ -103,6 +94,7 @@ export class TareaPage implements OnInit {
     };
 
     this.tareas.push(tarea);
+    this.guardarTareas();
     this.mostrarToast('✅ Tarea agregada exitosamente', 'success');
     
     // Limpiar formulario
@@ -145,6 +137,7 @@ export class TareaPage implements OnInit {
             if (data.titulo.trim()) {
               tarea.titulo = data.titulo;
               tarea.descripcion = data.descripcion;
+              this.guardarTareas();
               this.mostrarToast('✏️ Tarea actualizada', 'primary');
             }
           }
@@ -153,6 +146,7 @@ export class TareaPage implements OnInit {
           text: 'Mover a Progreso',
           handler: () => {
             tarea.estado = 'progreso';
+            this.guardarTareas();
             this.mostrarToast('📋 Tarea movida a En Progreso', 'primary');
           }
         }
@@ -181,6 +175,7 @@ export class TareaPage implements OnInit {
           text: 'Marcar como Finalizada',
           handler: () => {
             tarea.estado = 'finalizada';
+            this.guardarTareas();
             this.mostrarToast('🎉 ¡Tarea completada!', 'success');
           }
         }
@@ -206,6 +201,7 @@ export class TareaPage implements OnInit {
             const index = this.tareas.findIndex(t => t.id === tarea.id);
             if (index > -1) {
               this.tareas.splice(index, 1);
+              this.guardarTareas();
               this.mostrarToast('🗑️ Tarea eliminada', 'danger');
             }
           }
