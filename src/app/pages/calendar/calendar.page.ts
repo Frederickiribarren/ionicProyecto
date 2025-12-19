@@ -5,6 +5,7 @@ import { IonContent, IonDatetime, IonIcon, IonCard, IonCardContent, IonCardHeade
 import { AddReminderModalComponent } from './add-reminder-modal.component';
 import { addIcons } from 'ionicons';
 import { add, trashOutline, calendarOutline, addCircle } from 'ionicons/icons';
+import { DeviceService } from '../../services/device.service';
 
 interface Recordatorio {
   titulo: string;
@@ -22,12 +23,21 @@ interface Recordatorio {
 })
 export class CalendarPage implements OnInit {
 
-  selectedDate: string = new Date().toISOString();
+  selectedDate: string;
   todosLosRecordatorios: Recordatorio[] = [];
   recordatoriosDelDia: Recordatorio[] = [];
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(
+    private modalCtrl: ModalController,
+    private deviceService: DeviceService
+  ) {
     addIcons({ add, trashOutline, calendarOutline, addCircle });
+    // Inicializar con la fecha local actual
+    const hoy = new Date();
+    const year = hoy.getFullYear();
+    const month = String(hoy.getMonth() + 1).padStart(2, '0');
+    const day = String(hoy.getDate()).padStart(2, '0');
+    this.selectedDate = `${year}-${month}-${day}T00:00:00.000Z`;
   }
 
   ngOnInit() {
@@ -60,6 +70,22 @@ export class CalendarPage implements OnInit {
       this.todosLosRecordatorios.push(data);
       this.guardarRecordatorios();
       this.filtrarRecordatoriosPorFecha();
+      
+      // Vibrar al agregar
+      this.deviceService.vibrarExito();
+      
+      // Programar notificación si tiene hora
+      if (data.hora) {
+        const fechaHora = new Date(`${data.fecha.split('T')[0]}T${data.hora}`);
+        if (fechaHora > new Date()) {
+          await this.deviceService.programarNotificacion(
+            Date.now(),
+            '🗓️ Recordatorio',
+            data.titulo,
+            fechaHora
+          );
+        }
+      }
     }
   }
 
@@ -91,6 +117,33 @@ export class CalendarPage implements OnInit {
     this.todosLosRecordatorios = this.todosLosRecordatorios.filter(r => r !== recordatorio);
     this.guardarRecordatorios();
     this.filtrarRecordatoriosPorFecha();
+    this.deviceService.vibrarError();
+  }
+
+  async agregarACalendarioNativo(recordatorio: Recordatorio) {
+    try {
+      const fechaHora = new Date(`${recordatorio.fecha.split('T')[0]}T${recordatorio.hora || '12:00'}`);
+      const fechaFin = new Date(fechaHora.getTime() + 60 * 60 * 1000); // 1 hora después
+
+      const exito = await this.deviceService.agregarEventoCalendario(
+        recordatorio.titulo,
+        '', // ubicación
+        recordatorio.descripcion || '',
+        fechaHora,
+        fechaFin
+      );
+
+      if (exito) {
+        this.deviceService.vibrarExito();
+        console.log('✅ Evento agregado al calendario nativo');
+      } else {
+        this.deviceService.vibrarAdvertencia();
+        console.log('⚠️ No se pudo agregar al calendario');
+      }
+    } catch (error) {
+      console.error('Error al agregar al calendario:', error);
+      this.deviceService.vibrarError();
+    }
   }
 
 }

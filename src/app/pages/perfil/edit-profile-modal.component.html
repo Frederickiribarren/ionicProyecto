@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Perfil</ion-title>
+    <ion-button slot="end" fill="clear" (click)="cerrar()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form>
+    <ion-item>
+      <ion-label position="stacked">Nombre completo</ion-label>
+      <ion-input 
+        [(ngModel)]="nombre" 
+        name="nombre"
+        type="text" 
+        placeholder="Ingresa tu nombre"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Usuario</ion-label>
+      <ion-input 
+        [(ngModel)]="username" 
+        name="username"
+        type="text" 
+        placeholder="@usuario"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Correo electrónico</ion-label>
+      <ion-input 
+        [(ngModel)]="email" 
+        name="email"
+        type="email" 
+        placeholder="correo@ejemplo.com"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="ion-margin-top" (click)="guardar()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Guardar cambios
+    </ion-button>
+  </form>
+</ion-content>

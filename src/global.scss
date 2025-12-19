@@ -33,23 +33,13 @@
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.class.css";
 /* @import '@ionic/angular/css/palettes/dark.system.css'; */
 
 /**
- * Forzar tema claro (fondo blanco)
+ * Tema personalizado
  * -----------------------------------------------------
  */
-:root {
-  --ion-background-color: #ffffff;
-  --ion-text-color: #000000;
-}
-
-ion-content {
-  --background: #ffffff !important;
-}
-
-/* Tema de la aplicación - variables globales reutilizables */
 :root {
   --primary: #8b5cf6;
   --primary-dark: #7c3aed;

@@ -12,11 +12,8 @@ import {
   IonLabel,
   IonInput,
   IonTextarea,
-  IonIcon,
   ModalController 
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { trashOutline, calendarOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-add-reminder-modal',
@@ -33,8 +30,7 @@ import { trashOutline, calendarOutline } from 'ionicons/icons';
     IonItem,
     IonLabel,
     IonInput,
-    IonTextarea,
-    IonIcon
+    IonTextarea
   ],
   template: `
     <ion-header>

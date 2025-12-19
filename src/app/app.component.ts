@@ -7,5 +7,26 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    this.inicializarTema();
+  }
+
+  inicializarTema() {
+    const temaGuardado = localStorage.getItem('tema');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Remover clase primero
+    document.documentElement.classList.remove('ion-palette-dark');
+    
+    if (temaGuardado) {
+      if (temaGuardado === 'auto') {
+        if (prefersDark.matches) {
+          document.documentElement.classList.add('ion-palette-dark');
+        }
+      } else if (temaGuardado === 'dark') {
+        document.documentElement.classList.add('ion-palette-dark');
+      }
+      // Si es 'light', la clase ya fue removida
+    }
+  }
 }

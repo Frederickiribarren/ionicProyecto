@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/perfil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Privacidad y Seguridad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="section-header">
+    <h2>Protege tu información</h2>
+    <p>Gestiona la seguridad de tu cuenta y tus datos</p>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">Seguridad</h3>
+    <ion-list>
+      <ion-item button (click)="cambiarContrasena()">
+        <ion-icon name="lock-closed" slot="start"></ion-icon>
+        <ion-label>
+          <h3>Cambiar contraseña</h3>
+          <p>Actualiza tu contraseña de acceso</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">Privacidad de datos</h3>
+    <ion-list>
+      <ion-item button (click)="verDatosAlmacenados()">
+        <ion-icon name="eye" slot="start"></ion-icon>
+        <ion-label>
+          <h3>Ver datos almacenados</h3>
+          <p>Revisa qué información guardamos</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item button (click)="exportarDatos()">
+        <ion-icon name="download" slot="start"></ion-icon>
+        <ion-label>
+          <h3>Exportar mis datos</h3>
+          <p>Descarga una copia de tu información</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item button (click)="eliminarTodosDatos()" class="danger-item">
+        <ion-icon name="trash" slot="start" color="danger"></ion-icon>
+        <ion-label color="danger">
+          <h3>Eliminar todos los datos</h3>
+          <p>Borra permanentemente tu información</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="info-box ion-margin-top">
+    <ion-icon name="lock-closed"></ion-icon>
+    <div>
+      <h4>Tus datos están seguros</h4>
+      <p>Toda tu información se almacena localmente en tu dispositivo y no se comparte con terceros.</p>
+    </div>
+  </div>
+</ion-content>

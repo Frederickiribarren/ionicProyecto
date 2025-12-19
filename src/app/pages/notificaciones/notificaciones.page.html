@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/perfil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="section-header">
+    <h2>Preferencias de alertas</h2>
+    <p>Gestiona cómo y cuándo quieres recibir notificaciones</p>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+      <ion-label>
+        <h3>Notificaciones de tareas</h3>
+        <p>Recibe alertas cuando vencen tus tareas</p>
+      </ion-label>
+      <ion-toggle [(ngModel)]="config.tareas" (ionChange)="guardarConfiguracion()"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="notifications" slot="start"></ion-icon>
+      <ion-label>
+        <h3>Notificaciones de recordatorios</h3>
+        <p>Recibe alertas de tus recordatorios programados</p>
+      </ion-label>
+      <ion-toggle [(ngModel)]="config.recordatorios" (ionChange)="guardarConfiguracion()"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="time" slot="start"></ion-icon>
+      <ion-label>
+        <h3>Modo No Molestar</h3>
+        <p>Silencia notificaciones en horario específico</p>
+      </ion-label>
+      <ion-toggle [(ngModel)]="config.noMolestar" (ionChange)="guardarConfiguracion()"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <div class="horario-section" *ngIf="config.noMolestar">
+    <h3>Horario No Molestar</h3>
+    <ion-list>
+      <ion-item>
+        <ion-label>Hora inicio</ion-label>
+        <ion-input 
+          type="time" 
+          [(ngModel)]="config.horaInicio" 
+          (ionChange)="guardarConfiguracion()"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Hora fin</ion-label>
+        <ion-input 
+          type="time" 
+          [(ngModel)]="config.horaFin" 
+          (ionChange)="guardarConfiguracion()"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="info-box ion-margin-top">
+    <ion-icon name="notifications"></ion-icon>
+    <p>Los cambios se aplican inmediatamente a todas las notificaciones futuras.</p>
+  </div>
+</ion-content>

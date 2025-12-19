@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/perfil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Apariencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="section-header">
+    <h2>Personaliza la apariencia</h2>
+    <p>Elige el tema que más te guste</p>
+  </div>
+
+  <div class="theme-selector">
+    <ion-segment [(ngModel)]="temaSeleccionado" (ionChange)="cambiarTema($event)">
+      <ion-segment-button value="light">
+        <ion-icon name="sunny"></ion-icon>
+        <ion-label>Claro</ion-label>
+      </ion-segment-button>
+      
+      <ion-segment-button value="dark">
+        <ion-icon name="moon"></ion-icon>
+        <ion-label>Oscuro</ion-label>
+      </ion-segment-button>
+      
+      <ion-segment-button value="auto">
+        <ion-icon name="contrast"></ion-icon>
+        <ion-label>Auto</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="theme-preview">
+    <h3>Vista previa</h3>
+    <div class="preview-card">
+      <div class="preview-header">
+        <div class="preview-avatar"></div>
+        <div class="preview-info">
+          <div class="preview-name"></div>
+          <div class="preview-text"></div>
+        </div>
+      </div>
+      <div class="preview-content">
+        <div class="preview-line"></div>
+        <div class="preview-line"></div>
+        <div class="preview-line short"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box ion-margin-top">
+    <ion-icon name="contrast"></ion-icon>
+    <div>
+      <h4>Modo automático</h4>
+      <p>Se ajusta según la configuración de tu sistema operativo.</p>
+    </div>
+  </div>
+</ion-content>

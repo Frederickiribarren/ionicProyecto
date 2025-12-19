@@ -16,12 +16,12 @@
       </div>
 
       <div class="profile-info">
-        <h1 class="profile-name">Nombre Usuario</h1>
-        <p class="profile-username">@usuario123</p>
-        <p class="profile-email">Correo@correo.com</p>
+        <h1 class="profile-name">{{ nombre }}</h1>
+        <p class="profile-username">@{{ username }}</p>
+        <p class="profile-email">{{ email }}</p>
       </div>
 
-      <ion-button expand="block" class="edit-profile-btn">
+      <ion-button expand="block" class="edit-profile-btn" (click)="abrirEditarPerfil()">
         <ion-icon name="create-outline" slot="start"></ion-icon>
         Editar perfil
       </ion-button>
@@ -50,7 +50,7 @@
       <h3 class="section-title">Configuración</h3>
       
       <div class="settings-list">
-        <div class="setting-item">
+        <div class="setting-item" (click)="irInformacionPersonal()">
           <div class="setting-icon">
             <ion-icon name="person-outline"></ion-icon>
           </div>
@@ -61,7 +61,7 @@
           <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
         </div>
 
-        <div class="setting-item">
+        <div class="setting-item" (click)="irNotificaciones()">
           <div class="setting-icon">
             <ion-icon name="notifications-outline"></ion-icon>
           </div>
@@ -72,7 +72,7 @@
           <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
         </div>
 
-        <div class="setting-item">
+        <div class="setting-item" (click)="irApariencia()">
           <div class="setting-icon">
             <ion-icon name="color-palette-outline"></ion-icon>
           </div>
@@ -83,7 +83,7 @@
           <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
         </div>
 
-        <div class="setting-item">
+        <div class="setting-item" (click)="irPrivacidadSeguridad()">
           <div class="setting-icon">
             <ion-icon name="shield-checkmark-outline"></ion-icon>
           </div>
@@ -94,7 +94,7 @@
           <ion-icon name="chevron-forward-outline" class="setting-arrow"></ion-icon>
         </div>
 
-        <div class="setting-item">
+        <div class="setting-item" (click)="irAyudaSoporte()">
           <div class="setting-icon">
             <ion-icon name="help-circle-outline"></ion-icon>
           </div>
@@ -128,10 +128,6 @@
       aria-label="Abrir mapa en geotest"
     ></ion-google-map>
 
-    <div class="map-overlay">
-      <ion-button size="small" fill="solid" (click)="openGeotest()" aria-label="Abrir geotest">Ver ubicación</ion-button>
-    </div>
-    
 
   </div>
 </ion-content>

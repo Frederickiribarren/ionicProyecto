@@ -1,0 +1,141 @@
+.section-header {
+  margin-bottom: 32px;
+  
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+.section {
+  margin-bottom: 40px;
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ion-color-medium);
+    margin-bottom: 16px;
+  }
+}
+
+// FAQ Accordion
+ion-accordion-group {
+  ion-accordion {
+    margin-bottom: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    
+    ion-item[slot="header"] {
+      --padding-start: 0;
+      
+      ion-icon {
+        margin-right: 12px;
+        color: var(--ion-color-primary);
+      }
+      
+      ion-label {
+        font-weight: 500;
+      }
+    }
+    
+    .accordion-content {
+      padding: 16px;
+      background: var(--ion-color-light);
+      
+      p {
+        margin: 0;
+        color: var(--ion-color-medium);
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+// Contact Options
+.contact-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--ion-color-light);
+    border-radius: 8px;
+    
+    ion-icon {
+      font-size: 32px;
+      color: var(--ion-color-primary);
+    }
+    
+    h4 {
+      margin: 0 0 4px 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--ion-color-medium);
+    }
+    
+    p {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+}
+
+// Form
+form {
+  ion-item {
+    --padding-start: 0;
+    margin-bottom: 16px;
+  }
+  
+  ion-label {
+    font-weight: 500;
+  }
+  
+  ion-button {
+    margin-top: 24px;
+  }
+}
+
+// Documentation List
+ion-list {
+  background: transparent;
+  
+  ion-item {
+    --padding-start: 0;
+    margin-bottom: 8px;
+    
+    ion-icon[slot="start"] {
+      margin-right: 12px;
+      font-size: 24px;
+      color: var(--ion-color-primary);
+    }
+    
+    ion-label {
+      h3 {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      
+      p {
+        font-size: 12px;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}

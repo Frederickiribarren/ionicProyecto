@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonButton, IonIcon, IonItem } from '@ionic/angular/standalone';
-import { Geolocation } from '@capacitor/geolocation';
 
 interface GPSLocation {
   latitude: number;
@@ -27,27 +26,12 @@ export class GeotestPage implements OnInit {
 
   ngOnInit() {
   }
+
   async obtenerUbicacion() {
     this.obteniendoUbicacion = true;
     try {
-      //const permisos = await Geolocation.requestPermissions();
-      //if (permisos.location === "granted") {
-        const posicion = await Geolocation.getCurrentPosition(
-          {
-            enableHighAccuracy: true,
-            timeout: 10000,
-          }
-        );
-        this.unaUbicacion = {
-          latitude: posicion.coords.latitude,
-          longitude: posicion.coords.longitude,
-          accuracy: posicion.coords.accuracy,
-          timestamp: posicion.timestamp
-        };
-        console.log('Ubicación obtenida:', this.unaUbicacion);
-     // } else {
-      //  console.error('Permiso de ubicación denegado');
-     // }
+      console.log('Funcionalidad de geolocalización deshabilitada. Instale @capacitor/geolocation para habilitarla.');
+      // TODO: Reinstalar @capacitor/geolocation si se necesita esta funcionalidad
     } catch (error) {
       console.error('Error al obtener ubicación:', error);
     } finally {

@@ -1,5 +1,5 @@
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollY]="false">
   <div class="calendar-wrap">
     <div class="calendar-card">
       <ion-datetime 
@@ -32,6 +32,10 @@
             {{ recordatorio.descripcion }}
           </ion-card-content>
           <div class="card-actions">
+            <ion-button fill="clear" color="primary" size="small" (click)="agregarACalendarioNativo(recordatorio)">
+              <ion-icon slot="start" name="calendar-outline"></ion-icon>
+              Agregar a Calendario
+            </ion-button>
             <ion-button fill="clear" color="danger" size="small" (click)="eliminarRecordatorio(recordatorio)">
               <ion-icon slot="start" name="trash-outline"></ion-icon>
               Eliminar

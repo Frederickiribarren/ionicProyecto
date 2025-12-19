@@ -1,0 +1,25 @@
+ion-list {
+  background: transparent;
+}
+
+ion-item {
+  --padding-start: 0;
+  margin-bottom: 16px;
+}
+
+ion-label {
+  font-weight: 500;
+}
+
+ion-icon[slot="start"] {
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+ion-textarea {
+  margin-top: 8px;
+}
+
+ion-button {
+  margin-top: 24px;
+}

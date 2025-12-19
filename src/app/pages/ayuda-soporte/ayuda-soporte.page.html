@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/perfil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ayuda y Soporte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="section-header">
+    <h2>¿En qué podemos ayudarte?</h2>
+    <p>Encuentra respuestas o contáctanos</p>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section">
+    <h3 class="section-title">Preguntas Frecuentes</h3>
+    <ion-accordion-group>
+      <ion-accordion *ngFor="let faq of faqs; let i = index" [value]="'faq-' + i">
+        <ion-item slot="header">
+          <ion-icon name="help-circle" slot="start"></ion-icon>
+          <ion-label>{{ faq.pregunta }}</ion-label>
+        </ion-item>
+        <div class="accordion-content" slot="content">
+          <p>{{ faq.respuesta }}</p>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="section">
+    <h3 class="section-title">Contáctanos</h3>
+    <div class="contact-options">
+      <div class="contact-item">
+        <ion-icon name="mail"></ion-icon>
+        <div>
+          <h4>Email</h4>
+          <p>soporte@tareas.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <ion-icon name="call"></ion-icon>
+        <div>
+          <h4>Teléfono</h4>
+          <p>+54 9 11 1234-5678</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Form -->
+  <div class="section">
+    <h3 class="section-title">Envíanos un mensaje</h3>
+    <form>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input 
+          [(ngModel)]="nombre" 
+          name="nombre"
+          type="text"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input 
+          [(ngModel)]="email" 
+          name="email"
+          type="email"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Mensaje</ion-label>
+        <ion-textarea 
+          [(ngModel)]="mensaje" 
+          name="mensaje"
+          rows="5"
+        ></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" class="ion-margin-top" (click)="enviarConsulta()">
+        <ion-icon name="chatbubbles" slot="start"></ion-icon>
+        Enviar consulta
+      </ion-button>
+    </form>
+  </div>
+
+  <!-- Documentation -->
+  <div class="section">
+    <h3 class="section-title">Documentación</h3>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="document" slot="start"></ion-icon>
+        <ion-label>
+          <h3>Guía de inicio rápido</h3>
+          <p>Aprende lo básico en 5 minutos</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="document" slot="start"></ion-icon>
+        <ion-label>
+          <h3>Funciones avanzadas</h3>
+          <p>Saca el máximo provecho de la app</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="document" slot="start"></ion-icon>
+        <ion-label>
+          <h3>Política de privacidad</h3>
+          <p>Cómo manejamos tus datos</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

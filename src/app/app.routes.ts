@@ -42,4 +42,24 @@ export const routes: Routes = [
     path: 'calendar',
     loadComponent: () => import('./pages/calendar/calendar.page').then( m => m.CalendarPage)
   },
+  {
+    path: 'informacion-personal',
+    loadComponent: () => import('./pages/informacion-personal/informacion-personal.page').then( m => m.InformacionPersonalPage)
+  },
+  {
+    path: 'notificaciones',
+    loadComponent: () => import('./pages/notificaciones/notificaciones.page').then( m => m.NotificacionesPage)
+  },
+  {
+    path: 'apariencia',
+    loadComponent: () => import('./pages/apariencia/apariencia.page').then( m => m.AparienciaPage)
+  },
+  {
+    path: 'privacidad-seguridad',
+    loadComponent: () => import('./pages/privacidad-seguridad/privacidad-seguridad.page').then( m => m.PrivacidadSeguridadPage)
+  },
+  {
+    path: 'ayuda-soporte',
+    loadComponent: () => import('./pages/ayuda-soporte/ayuda-soporte.page').then( m => m.AyudaSoportePage)
+  },
 ];

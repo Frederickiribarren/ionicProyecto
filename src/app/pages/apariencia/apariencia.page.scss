@@ -1,0 +1,130 @@
+.section-header {
+  margin-bottom: 24px;
+  
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+.theme-selector {
+  margin-bottom: 32px;
+  
+  ion-segment {
+    --background: var(--ion-color-light);
+  }
+  
+  ion-segment-button {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+    
+    ion-icon {
+      font-size: 32px;
+    }
+    
+    ion-label {
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+}
+
+.theme-preview {
+  margin-top: 32px;
+  
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  
+  .preview-card {
+    background: var(--ion-color-light);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--ion-color-medium-tint);
+    
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      
+      .preview-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--ion-color-medium);
+      }
+      
+      .preview-info {
+        flex: 1;
+        
+        .preview-name {
+          width: 120px;
+          height: 16px;
+          background: var(--ion-color-medium);
+          border-radius: 4px;
+          margin-bottom: 8px;
+        }
+        
+        .preview-text {
+          width: 80px;
+          height: 12px;
+          background: var(--ion-color-medium-tint);
+          border-radius: 4px;
+        }
+      }
+    }
+    
+    .preview-content {
+      .preview-line {
+        height: 12px;
+        background: var(--ion-color-medium-tint);
+        border-radius: 4px;
+        margin-bottom: 8px;
+        
+        &.short {
+          width: 60%;
+        }
+      }
+    }
+  }
+}
+
+.info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--ion-color-light);
+  border-radius: 8px;
+  margin-top: 24px;
+  
+  ion-icon {
+    font-size: 24px;
+    color: var(--ion-color-primary);
+    margin-top: 2px;
+  }
+  
+  h4 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ion-color-medium);
+    line-height: 1.5;
+  }
+}

@@ -15,6 +15,7 @@ import {
   AlertController,
   ToastController
 } from '@ionic/angular/standalone';
+import { DeviceService } from '../../services/device.service';
 
 interface Tarea {
   id: number;
@@ -54,7 +55,8 @@ export class TareaPage implements OnInit {
 
   constructor(
     private alertController: AlertController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private deviceService: DeviceService
   ) { }
 
   ngOnInit() {
@@ -81,6 +83,7 @@ export class TareaPage implements OnInit {
 
   agregarTarea() {
     if (!this.nuevaTarea.titulo.trim()) {
+      this.deviceService.vibrarAdvertencia();
       this.mostrarToast('Por favor ingresa un título para la tarea', 'warning');
       return;
     }
@@ -95,6 +98,7 @@ export class TareaPage implements OnInit {
 
     this.tareas.push(tarea);
     this.guardarTareas();
+    this.deviceService.vibrarExito();
     this.mostrarToast('✅ Tarea agregada exitosamente', 'success');
     
     // Limpiar formulario
@@ -138,6 +142,7 @@ export class TareaPage implements OnInit {
               tarea.titulo = data.titulo;
               tarea.descripcion = data.descripcion;
               this.guardarTareas();
+              this.deviceService.vibrarExito();
               this.mostrarToast('✏️ Tarea actualizada', 'primary');
             }
           }
@@ -147,6 +152,7 @@ export class TareaPage implements OnInit {
           handler: () => {
             tarea.estado = 'progreso';
             this.guardarTareas();
+            this.deviceService.vibrarSeleccion();
             this.mostrarToast('📋 Tarea movida a En Progreso', 'primary');
           }
         }
@@ -159,16 +165,47 @@ export class TareaPage implements OnInit {
   async enviarNotificacion(tarea: Tarea) {
     const alert = await this.alertController.create({
       header: '🔔 Notificación',
-      message: `¿Deseas recibir recordatorios sobre "${tarea.titulo}"?`,
+      message: `¿Cuándo deseas recibir recordatorio de "${tarea.titulo}"?`,
+      inputs: [
+        {
+          name: 'fecha',
+          type: 'date',
+          min: new Date().toISOString().split('T')[0],
+          placeholder: 'Selecciona la fecha'
+        },
+        {
+          name: 'hora',
+          type: 'time',
+          placeholder: 'Selecciona la hora'
+        }
+      ],
       buttons: [
         {
           text: 'Cancelar',
           role: 'cancel'
         },
         {
-          text: 'Notificar',
-          handler: () => {
-            this.mostrarToast('🔔 Notificación configurada para esta tarea', 'warning');
+          text: 'Programar',
+          handler: async (data) => {
+            if (data.fecha && data.hora) {
+              const fechaNotificacion = new Date(`${data.fecha}T${data.hora}`);
+              const exito = await this.deviceService.programarNotificacion(
+                tarea.id,
+                '📋 Recordatorio de Tarea',
+                tarea.titulo,
+                fechaNotificacion
+              );
+              if (exito) {
+                this.deviceService.vibrarNotificacion();
+                this.mostrarToast('🔔 Notificación programada exitosamente', 'success');
+              } else {
+                this.mostrarToast('⚠️ Error al programar notificación', 'danger');
+              }
+              return true;
+            } else {
+              this.mostrarToast('⚠️ Debes seleccionar fecha y hora', 'warning');
+              return false;
+            }
           }
         },
         {
@@ -176,6 +213,7 @@ export class TareaPage implements OnInit {
           handler: () => {
             tarea.estado = 'finalizada';
             this.guardarTareas();
+            this.deviceService.vibrarNotificacion();
             this.mostrarToast('🎉 ¡Tarea completada!', 'success');
           }
         }
@@ -202,6 +240,7 @@ export class TareaPage implements OnInit {
             if (index > -1) {
               this.tareas.splice(index, 1);
               this.guardarTareas();
+              this.deviceService.vibrarError();
               this.mostrarToast('🗑️ Tarea eliminada', 'danger');
             }
           }
