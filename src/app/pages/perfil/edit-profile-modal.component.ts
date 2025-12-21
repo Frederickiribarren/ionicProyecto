@@ -15,6 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { close, checkmark } from 'ionicons/icons';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -41,24 +42,24 @@ export class EditProfileModalComponent implements OnInit {
   username: string = '';
   email: string = '';
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(
+    private modalCtrl: ModalController,
+    private authService: AuthService
+  ) {
     addIcons({ close, checkmark });
   }
 
   ngOnInit() {
-    // Cargar datos actuales desde localStorage
-    const perfilGuardado = localStorage.getItem('perfil');
-    if (perfilGuardado) {
-      try {
-        const perfil = JSON.parse(perfilGuardado);
-        this.nombre = perfil.nombre || 'Nombre Usuario';
-        this.username = perfil.username || 'usuario123';
-        this.email = perfil.email || 'Correo@correo.com';
-      } catch (e) {
-        console.error('Error cargando perfil:', e);
+    // Cargar datos del usuario autenticado desde AuthService
+    if (this.authService.isLoggedIn()) {
+      const usuario = this.authService.getUsuario();
+      if (usuario) {
+        this.nombre = this.authService.getNombreCompleto();
+        this.username = usuario.email.split('@')[0];
+        this.email = this.authService.getEmail();
       }
     } else {
-      // Valores por defecto si no hay nada guardado
+      // Valores por defecto si no hay usuario autenticado
       this.nombre = 'Nombre Usuario';
       this.username = 'usuario123';
       this.email = 'Correo@correo.com';

@@ -9,6 +9,7 @@ import {
     IonIcon,
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { TareaPage } from '../tarea/tarea.page';
 import { PerfilPage } from '../perfil/perfil.page';
 import { CalendarPage } from '../calendar/calendar.page';
@@ -35,9 +36,16 @@ import { CalendarPage } from '../calendar/calendar.page';
 export class DashboardPage implements OnInit {
   currentView: string = 'tarea';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    // Verificar si el usuario está autenticado
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    }
   }
 
   changeView(view: string) {

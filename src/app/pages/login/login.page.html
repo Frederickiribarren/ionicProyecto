@@ -14,9 +14,10 @@
       fill="outline"
       label="Correo electrónico" 
       labelPlacement="floating"
-      errorText="Correo inválido" 
-      ngModel 
-      email
+      errorText="Correo inválido"
+      [(ngModel)]="model.email"
+      name="email"
+      required
     ></ion-input>
     
     <ion-input 
@@ -24,12 +25,14 @@
       fill="outline"
       label="Contraseña" 
       labelPlacement="floating"
-      value=""
+      [(ngModel)]="model.password"
+      name="password"
+      required
     >
       <ion-input-password-toggle slot="end"></ion-input-password-toggle>
     </ion-input>
 
-    <ion-button expand="full" (click)="irDashboard()">Iniciar Sesión</ion-button>
+    <ion-button expand="full" (click)="login()" [disabled]="loading">Iniciar Sesión</ion-button>
 
     <p style="margin: 24px 0 0; font-size: 13px; color: #64748b; text-align: center;">
       ¿No tienes cuenta? <a (click)="irRegister()" style="color: #8b5cf6; font-weight: 600; text-decoration: none; cursor: pointer;">Regístrate</a>

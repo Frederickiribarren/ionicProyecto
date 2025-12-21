@@ -5,6 +5,7 @@ import { IonContent, IonAvatar, IonButton, IonIcon, ModalController } from '@ion
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
+import { AuthService } from '../../services/auth.service';
 import { EditProfileModalComponent } from './edit-profile-modal.component';
 import { 
   camera, 
@@ -39,7 +40,11 @@ export class PerfilPage implements OnInit {
     username: string = 'usuario123';
     email: string = 'Correo@correo.com';
 
-  constructor(private router: Router, private modalCtrl: ModalController) {
+  constructor(
+    private router: Router, 
+    private modalCtrl: ModalController,
+    private authService: AuthService
+  ) {
     addIcons({ 
       camera, 
       createOutline, 
@@ -62,22 +67,34 @@ export class PerfilPage implements OnInit {
   }
 
   cargarDatosPerfil() {
-    const perfilGuardado = localStorage.getItem('perfil');
-    if (perfilGuardado) {
-      try {
-        const perfil = JSON.parse(perfilGuardado);
-        this.nombre = perfil.nombre || 'Nombre Usuario';
-        this.username = perfil.username || 'usuario123';
-        this.email = perfil.email || 'Correo@correo.com';
-      } catch (e) {
-        console.error('Error cargando perfil:', e);
+    // Cargar datos del usuario autenticado desde AuthService
+    if (this.authService.isLoggedIn()) {
+      const usuario = this.authService.getUsuario();
+      if (usuario) {
+        this.nombre = this.authService.getNombreCompleto();
+        this.username = usuario.email.split('@')[0]; // usar parte del email como username
+        this.email = this.authService.getEmail();
+        
+        // Usar foto de perfil de la API (base64 o URL)
+        const fotoAPI = this.authService.getFotoPerfil();
+        
+        // Solo usar imagen local si NO hay imagen válida de la API
+        const imagenLocal = localStorage.getItem('imagenPerfil');
+        
+        // Priorizar imagen de API si existe y no es la default
+        if (fotoAPI && fotoAPI !== 'https://ionicframework.com/docs/img/demos/avatar.svg') {
+          this.imagenCapturada = fotoAPI;
+          console.log('Usando foto de perfil de la API (base64 o URL)');
+        } else if (imagenLocal) {
+          this.imagenCapturada = imagenLocal;
+          console.log('Usando imagen local capturada');
+        } else {
+          this.imagenCapturada = fotoAPI; // imagen por defecto
+          console.log('Usando imagen por defecto');
+        }
+        
+        console.log('Usuario cargado desde API:', usuario);
       }
-    }
-
-    // Cargar imagen capturada si existe
-    const imagenGuardada = localStorage.getItem('imagenPerfil');
-    if (imagenGuardada) {
-      this.imagenCapturada = imagenGuardada;
     }
   }
 
@@ -164,7 +181,8 @@ export class PerfilPage implements OnInit {
   }
 
   onLogout() {
-    // Aquí podrías limpiar estado/localStorage antes de redirigir
+    // Cerrar sesión usando AuthService
+    this.authService.logout();
     console.log('Cerrar sesión');
     this.router.navigateByUrl('/login');
   }
